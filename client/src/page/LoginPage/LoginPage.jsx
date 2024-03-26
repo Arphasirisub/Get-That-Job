@@ -2,6 +2,7 @@ import "../../App.css";
 import { useState, useEffect } from "react";
 import { imageLogin } from "../../data/image";
 import axios from "axios";
+import Navbar from "../../PublicComponant/NavBar";
 
 function LoginPage() {
   const [changeLoginForm, setChangeLoginForm] = useState(false);
@@ -37,6 +38,7 @@ function LoginPage() {
 
   return (
     <>
+      <Navbar />
       <div className="w-screen h-screen bg-gray-100">
         <div className="flex justify-center gap-8 font-montserrat">
           <div className="flex flex-col gap-6 w-96">

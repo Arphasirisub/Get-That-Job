@@ -2,15 +2,21 @@ import { imageNavbar } from "../data/image.js";
 import { useNavigate } from "react-router-dom";
 
 const button = [
-  { name: "SIGN UP", picture: imageNavbar.signupLogo },
+  { name: "SIGN UP", picture: imageNavbar.signupLogo, link: "/signUp" },
   { name: "LOGIN", picture: imageNavbar.loginLogo, link: "/login" },
 ];
 
 function Navbar() {
   const navigate = useNavigate();
   return (
-    <div className=" w-screen h-14 bg-white flex flex-row justify-between items-center px-40">
-      <img className=" w-24 h-8" src={imageNavbar.gtjlogo} />
+    <div className=" w-screen h-14 bg-white flex flex-row justify-between items-center px-40 drop-shadow-md">
+      <img
+        onClick={() => {
+          navigate("/");
+        }}
+        className=" w-24 h-8 cursor-pointer"
+        src={imageNavbar.gtjlogo}
+      />
       <div className="flex flex-row items-center gap-3">
         {button.map((items) => {
           return (

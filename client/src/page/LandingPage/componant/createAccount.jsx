@@ -1,10 +1,12 @@
 import people from "../../../images/people.png";
+import { useNavigate } from "react-router-dom";
 
 function CreateAccount() {
+  const navigate = useNavigate();
   return (
-    <div className="w-screen bg-gray-100">
+    <div className="w-screen h-screen bg-gray-100">
       <div className="flex flex-col items-center gap-6 font-montserrat">
-        <div className="text-5xl text-gray-800 mt-28">
+        <div className="text-5xl text-gray-800 mt-16">
           <p>The place where</p>
           <p>
             you get <span className="text-pink-300">that</span> job
@@ -16,7 +18,12 @@ function CreateAccount() {
           <p>will take care of it.</p>
         </div>
         <div className="flex justify-center">
-          <button className="btn btn-secondary rounded-2xl border-transparent w-60 font-light bg-pink-300 text-white ">
+          <button
+            onClick={() => {
+              navigate("/signUp");
+            }}
+            className="btn btn-secondary rounded-2xl border-transparent w-60 font-light bg-pink-300 text-white "
+          >
             create an account now
           </button>
         </div>
