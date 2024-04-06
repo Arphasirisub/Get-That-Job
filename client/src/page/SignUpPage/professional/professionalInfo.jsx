@@ -1,9 +1,72 @@
 import { imageProfessionalInfo } from "../../../data/image";
 import { useAuth } from "../../../contexts/authTools";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 function ProfessionalInfo() {
-  const { setActiveSteps } = useAuth();
+  const {
+    setActiveSteps,
+    proTitle,
+    setProTitle,
+    proExperience,
+    setProExperience,
+    proEducation,
+    setProEducation,
+    input,
+    setInput,
+    proHandleSubmit
+  } = useAuth();
+  const navigate = useNavigate();
+
+  const handleTitleChange = (e) => {
+    const newTitle = e.target.value;
+    setInput((prevInput) => [
+      {
+        ...prevInput[0],
+        proTitle: newTitle,
+      },
+    ]);
+  };
+
+  const handleExperienceChange = (e) => {
+    const newExperience = e.target.value;
+    setInput((prevInput) => [
+      {
+        ...prevInput[0],
+        proExperience: newExperience,
+      },
+    ]);
+  };
+
+  const handleEducationChange = (e) => {
+    const newEducation = e.target.value;
+    setInput((prevInput) => [
+      {
+        ...prevInput[0],
+        proEducation: newEducation,
+      },
+    ]);
+  };
+
+  function submitProfessionalInfo(event) {
+    event.preventDefault();
+
+    setInput([
+      {
+        ...input,
+        proTitle,
+        proExperience,
+        proEducation,
+      },
+    ]);
+
+    console.log(input);
+    proHandleSubmit()
+    navigate("/login");
+  }
+
   return (
-    <form className=" mb-10 font-inter text-sm mt-7 flex flex-col">
+    <form onSubmit={submitProfessionalInfo} className=" mb-10 font-inter text-sm mt-7 flex flex-col">
       <div>
         <p className="text-[#616161] font-light">
           YOU CAN COMPLETE THIS INFORMATION LATER BUT WE
@@ -17,6 +80,8 @@ function ProfessionalInfo() {
         <input
           type="text"
           id="title"
+          onChange={handleTitleChange}
+          defaultValue={input.proTitle}
           placeholder="Mechanical administrator..."
           className="bg-white border border-[#f48fb1] outline-none rounded-md w-8/12 h-9 mt-1 pl-2.5"
         />
@@ -28,6 +93,8 @@ function ProfessionalInfo() {
         <textarea
           type="text"
           id="experience"
+          onChange={handleExperienceChange}
+          defaultValue={input.proExperience}
           placeholder="Worked 6 years in a bitcoin farm until I decided to change my life...."
           className="bg-white border border-[#f48fb1] outline-none rounded-md w-full h-20 mt-1 pl-2.5 pt-2"
         />
@@ -40,6 +107,8 @@ function ProfessionalInfo() {
         <textarea
           type="text"
           id="education"
+          onChange={handleEducationChange}
+          defaultValue={input.proEducation}
           placeholder="Major in life experiences with a PHD in procrastination..."
           className="bg-white border border-[#f48fb1] outline-none rounded-md w-full h-20 mt-1 pl-2.5 pt-2"
         />
@@ -63,18 +132,20 @@ function ProfessionalInfo() {
           <img src={imageProfessionalInfo.back} />
           <p>PREVIUS</p>
         </button>
-        {/* navigate to professional page */}
-        <button className="btn btn-ghost rounded-2xl font-light bg-[#f5f5f6] text-gray-800 border border-[#f48fb1]">
-          SKIP THIS!
-        </button>
-        {/* navigate to professional page and post to database */}
+
+        {/* navigate to login page */}
         <button
           onClick={() => {
-            setCompleteSteps((prev) => ({
-              ...prev,
-              proPersonal: true,
-            }));
+            navigate("/login");
           }}
+          className="btn btn-ghost rounded-2xl font-light bg-[#f5f5f6] text-gray-800 border border-[#f48fb1]"
+        >
+          SKIP THIS!
+        </button>
+
+        {/* navigate to login page and post to database */}
+        <button
+          type="submit"
           className="flex flex-row btn btn-secondary rounded-2xl border-transparent font-light bg-[#f48fb1] text-white"
         >
           <p>FINISH</p>

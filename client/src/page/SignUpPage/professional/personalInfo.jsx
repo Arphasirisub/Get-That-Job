@@ -1,10 +1,79 @@
 import next from "../../../images/next.png";
 import { useAuth } from "../../../contexts/authTools";
+import { useState } from "react";
+import * as React from "react";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 function ProPersonal() {
-  const { setActiveSteps } = useAuth();
+  const {
+    setActiveSteps,
+    proName,
+    setProName,
+    proPhone,
+    setProPhone,
+    // proBirthday,
+    setProBirthday,
+    linkedIn,
+    setLinkedIn,
+    input,
+    setInput,
+  } = useAuth();
+
+  //handle input
+  const handleNameChange = (e) => {
+    const newName = e.target.value;
+    setInput((prevInput) => [
+      {
+        ...prevInput[0],
+        proName: newName,
+      },
+    ]);
+  };
+
+  const handlePhoneChange = (e) => {
+    const newPhone = e.target.value;
+    setInput((prevInput) => [
+      {
+        ...prevInput[0],
+        proPhone: newPhone,
+      },
+    ]);
+  };
+  const handleLinkedInChange = (e) => {
+    const newLinked = e.target.value;
+    setInput((prevInput) => [
+      {
+        ...prevInput[0],
+        linkedIn: newLinked,
+      },
+    ]);
+  };
+
+  function submitPersonalInfo(event) {
+    event.preventDefault();
+
+    setInput([
+      {
+        ...input,
+        proName,
+        proPhone,
+        linkedIn,
+      },
+    ]);
+
+    console.log(input);
+
+    setActiveSteps("professionalInfo");
+  }
+
   return (
-    <form className="font-inter text-sm mt-7 flex flex-col">
+    <form
+      onSubmit={submitPersonalInfo}
+      className="font-inter text-sm mt-7 flex flex-col"
+    >
       <div>
         <p className="text-[#616161] font-light">
           YOU CAN COMPLETE THIS INFORMATION LATER BUT WE
@@ -18,6 +87,8 @@ function ProPersonal() {
         <input
           type="name"
           id="name"
+          onChange={handleNameChange}
+          defaultValue={input.proName}
           placeholder="John Doe"
           className="bg-white border border-[#f48fb1] outline-none rounded-md w-8/12 h-9 mt-1 pl-2.5"
         />
@@ -29,8 +100,10 @@ function ProPersonal() {
         <input
           type="tel"
           id="phone"
+          onChange={handlePhoneChange}
+          defaultValue={input.proPhone}
           placeholder="+XXXXXXXXX"
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          pattern="[0]{1}[0-9]{9}"
           className="bg-white border border-[#f48fb1] outline-none rounded-md w-8/12 h-9 mt-1 pl-2.5"
         />
       </label>
@@ -39,20 +112,27 @@ function ProPersonal() {
         <p htmlFor="birthday" className="text-gray-800 mt-2 font-light">
           BIRTHDAY
         </p>
-        <input
-          type="birthday"
-          id="birthday"
-          placeholder="Pick a date"
-          className="bg-white border border-[#f48fb1] outline-none rounded-md w-8/12 h-9 mt-1 pl-2.5"
-        />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker"]}>
+            <DatePicker
+              label="choose your birthday"
+              id="birthday"
+              className="bg-white outline-none rounded-md w-8/12 mt-1 pl-2.5"
+              // onChange={handleDateChange}
+              // value={proBirthday}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
       </label>
       <label>
-        <p htmlFor="birthday" className="text-gray-800 mt-2 font-light">
+        <p htmlFor="linkedIn" className="text-gray-800 mt-2 font-light">
           LINKEDIN URL
         </p>
         <input
-          type="birthday"
-          id="birthday"
+          type="text"
+          id="linkedIn"
+          onChange={handleLinkedInChange}
+          defaultValue={input.linkedIn}
           placeholder="https://www.linkedin.com/in/username"
           className="bg-white border border-[#f48fb1] outline-none rounded-md w-8/12 h-9 mt-1 pl-2.5"
         />
@@ -67,13 +147,7 @@ function ProPersonal() {
           SKIP THIS!
         </button>
         <button
-          onClick={() => {
-            setActiveSteps("professionalInfo");
-            setCompleteSteps((prev) => ({
-              ...prev,
-              proPersonal: true,
-            }));
-          }}
+          type="submit"
           className="flex flex-row btn btn-secondary rounded-2xl border-transparent font-light bg-[#f48fb1] text-white"
         >
           <p>NEXT</p>
