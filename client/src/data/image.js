@@ -13,10 +13,16 @@ import gtjlogo from "../images/gtjlogo.png";
 import loginLogo from "../images/loginLogo.png";
 import signupLogo from "../images/signinLogo.png";
 
+//Image jobs
+import searchLine from "../images/searchLine.png";
+import salary from "../images/salary.png";
+
 const imageLogin = { loginImage };
 
 const imageLandingPage = { ruby, javier, francisca, raul, contact };
 
 const imageNavbar = { gtjlogo, loginLogo, signupLogo };
 
-export { imageLogin, imageLandingPage, imageNavbar };
+const imageJobs = { searchLine, salary };
+
+export { imageLogin, imageLandingPage, imageNavbar, imageJobs };
