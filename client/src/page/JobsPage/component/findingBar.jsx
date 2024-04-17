@@ -9,23 +9,16 @@ function FindingBar() {
   const [maxSalary, setMaxSalary] = useState("");
 
   const handleChangeSearch = (e) => {
-    e.preventDefault();
     setSearch(e.target.value);
   };
 
   const handleChangeMinSalary = (e) => {
-    e.preventDefault();
     setMinSalary(e.target.value);
   };
 
   const handleChangeMaxSalary = (e) => {
-    e.preventDefault();
     setMaxSalary(e.target.value);
   };
-
-  useEffect(() => {
-    handleChangeSearch();
-  }, [search, minSalary, maxSalary]);
 
   return (
     <>
@@ -42,7 +35,7 @@ function FindingBar() {
             type="text"
             placeholder="manufacturing, sales, swim"
             className="grow"
-            onChange={(e) => handleChangeSearch(e)}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </label>
       </label>
