@@ -6,6 +6,7 @@ import { AuthProvider } from "./contexts/authTools.jsx";
 import jwtInterceptor from "./utils/jwtInterceptor.js";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { ProProvider } from "./contexts/ProTools.jsx";
+import { RecruiterProvider } from "./contexts/recruiterTools.jsx";
 
 // Attach token in header of every request
 jwtInterceptor();
@@ -18,15 +19,17 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <ProProvider>
-        <Auth0Provider
-          domain={domain}
-          clientId={clientID}
-          authorizationParams={{
-            redirect_uri: window.location.origin,
-          }}
-        >
-          <App />
-        </Auth0Provider>
+        <RecruiterProvider>
+          <Auth0Provider
+            domain={domain}
+            clientId={clientID}
+            authorizationParams={{
+              redirect_uri: window.location.origin,
+            }}
+          >
+            <App />
+          </Auth0Provider>
+        </RecruiterProvider>
       </ProProvider>
     </AuthProvider>
   </React.StrictMode>

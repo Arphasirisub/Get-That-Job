@@ -26,6 +26,10 @@ import information from "../images/information.png";
 import profileIcon from "../images/profileIcon.png";
 import logout from "../images/logout.png";
 
+//RecuiterSideBar
+import jobPosting from "../images/jobPosting.png";
+import createJob from "../images/createJob.png";
+
 const imageLogin = { loginImage };
 
 const imageLandingPage = { ruby, javier, francisca, raul, contact };
@@ -43,10 +47,19 @@ const imageSideBar = {
   logout,
 };
 
+const imageRecruiterSideBar = {
+  gtjLogo,
+  jobPosting,
+  createJob,
+  profileIcon,
+  logout,
+};
+
 export {
   imageLogin,
   imageLandingPage,
   imageNavbar,
   imageProfessionalInfo,
   imageSideBar,
+  imageRecruiterSideBar,
 };
