@@ -18,6 +18,14 @@ import back from "../images/back.png";
 import next from "../images/next.png";
 import upload from "../images/uploadIcon.png";
 
+//SideBar
+import gtjLogo from "../images/gtjlogo.png";
+import searchicon from "../images/searchicon.png";
+import following from "../images/following.png";
+import information from "../images/information.png";
+import profileIcon from "../images/profileIcon.png";
+import logout from "../images/logout.png";
+
 const imageLogin = { loginImage };
 
 const imageLandingPage = { ruby, javier, francisca, raul, contact };
@@ -26,4 +34,19 @@ const imageNavbar = { gtjlogo, loginLogo, signupLogo };
 
 const imageProfessionalInfo = { back, next, upload };
 
-export { imageLogin, imageLandingPage, imageNavbar, imageProfessionalInfo };
+const imageSideBar = {
+  gtjLogo,
+  searchicon,
+  following,
+  information,
+  profileIcon,
+  logout,
+};
+
+export {
+  imageLogin,
+  imageLandingPage,
+  imageNavbar,
+  imageProfessionalInfo,
+  imageSideBar,
+};

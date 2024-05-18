@@ -13,6 +13,7 @@ function AuthProvider(props) {
       professionalInfo: false,
     },
   ]);
+
   const [state, setState] = useState({
     loading: null,
     error: null,
@@ -21,7 +22,7 @@ function AuthProvider(props) {
 
   //login
   const login = async () => {
-    const result = await axios.post("http://localhost:4000/auth/login", data);
+    const result = await axios.post("http://localhost:3000/auth/login", data);
     console.log(result);
     const token = result.data.token;
     localStorage.setItem("token", token);
@@ -35,7 +36,7 @@ function AuthProvider(props) {
     try {
       console.log(data);
       await axios.post(
-        "http://localhost:4000/auth/professional/register",
+        "http://localhost:3000/auth/professional/register",
         data
       );
       console.log("Registration successful");
@@ -75,23 +76,21 @@ function AuthProvider(props) {
   ]);
 
   const proHandleSubmit = async () => {
-
     const data = {
-  
-      email: proEmail,
-      name: proName,
-      phone: proPhone,
-      birthday: proBirthday,
-      linkedinUrl: linkedIn,
-      Title: proTitle,
-      experience: proExperience,
-      education: proEducation,
+      email: input[0].proEmail,
+      password: input[0].proPassword,
+      name: input[0].proName,
+      phone: input[0].proPhone,
+      birthday: input[0].proBirthday,
+      linkedinUrl: input[0].linkedIn,
+      Title: input[0].proTitle,
+      experience: input[0].proExperience,
+      education: input[0].proEducation,
     };
 
     console.log("Submitting form data:", data);
-    // register(data);
-};
-
+    register(data);
+  };
 
   return (
     <AuthContext.Provider
@@ -124,6 +123,8 @@ function AuthProvider(props) {
         logout,
         input,
         setInput,
+        state,
+        setState,
       }}
     >
       {props.children}

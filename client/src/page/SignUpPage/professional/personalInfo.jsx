@@ -2,19 +2,21 @@ import next from "../../../images/next.png";
 import { useAuth } from "../../../contexts/authTools";
 import { useState } from "react";
 import * as React from "react";
+import dayjs from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 function ProPersonal() {
+  const [value, setValue] = React.useState(dayjs("2022-04-17"));
   const {
     setActiveSteps,
     proName,
     setProName,
     proPhone,
     setProPhone,
-    // proBirthday,
+    proBirthday,
     setProBirthday,
     linkedIn,
     setLinkedIn,
@@ -29,6 +31,16 @@ function ProPersonal() {
       {
         ...prevInput[0],
         proName: newName,
+      },
+    ]);
+  };
+
+  const handleBirthdayChange = (e) => {
+    const newBirthday = e.target.value;
+    setInput((prevInput) => [
+      {
+        ...prevInput[0],
+        proBirthday: newBirthday,
       },
     ]);
   };
@@ -54,15 +66,6 @@ function ProPersonal() {
 
   function submitPersonalInfo(event) {
     event.preventDefault();
-
-    setInput([
-      {
-        ...input,
-        proName,
-        proPhone,
-        linkedIn,
-      },
-    ]);
 
     console.log(input);
 
@@ -112,14 +115,28 @@ function ProPersonal() {
         <p htmlFor="birthday" className="text-gray-800 mt-2 font-light">
           BIRTHDAY
         </p>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DatePicker"]}>
             <DatePicker
               label="choose your birthday"
               id="birthday"
               className="bg-white outline-none rounded-md w-8/12 mt-1 pl-2.5"
-              // onChange={handleDateChange}
-              // value={proBirthday}
+              onChange={handleBirthdayChange}
+              value={input.proBirthday}
+            />
+          </DemoContainer>
+        </LocalizationProvider> */}
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker", "DatePicker"]}>
+            <DatePicker
+              label="Controlled picker"
+              // value={value}
+              // onChange={(newValue) => {
+              //   console.log(newValue.$d);
+              //   setValue(newValue); // Update the value state
+              //   console.log(value);
+              //   // handleBirthdayChange(newValue.$d); // Pass the new value to handleBirthdayChange
+              // }}
             />
           </DemoContainer>
         </LocalizationProvider>

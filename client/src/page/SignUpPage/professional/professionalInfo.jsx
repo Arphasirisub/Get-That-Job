@@ -51,15 +51,6 @@ function ProfessionalInfo() {
   function submitProfessionalInfo(event) {
     event.preventDefault();
 
-    setInput([
-      {
-        ...input,
-        proTitle,
-        proExperience,
-        proEducation,
-      },
-    ]);
-
     console.log(input);
     proHandleSubmit()
     navigate("/login");

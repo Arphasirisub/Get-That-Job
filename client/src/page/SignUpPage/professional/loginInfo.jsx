@@ -66,13 +66,6 @@ function ProLoginInfo() {
     //   return;
     // }
 
-    setInput([
-      {
-        ...input,
-        proEmail,
-        proPassword,
-      },
-    ]);
 
     console.log(input);
 
