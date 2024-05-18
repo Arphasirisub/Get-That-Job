@@ -13,10 +13,53 @@ import gtjlogo from "../images/gtjlogo.png";
 import loginLogo from "../images/loginLogo.png";
 import signupLogo from "../images/signinLogo.png";
 
+//ProfessionalInfo
+import back from "../images/back.png";
+import next from "../images/next.png";
+import upload from "../images/uploadIcon.png";
+
+//SideBar
+import gtjLogo from "../images/gtjlogo.png";
+import searchicon from "../images/searchicon.png";
+import following from "../images/following.png";
+import information from "../images/information.png";
+import profileIcon from "../images/profileIcon.png";
+import logout from "../images/logout.png";
+
+//RecuiterSideBar
+import jobPosting from "../images/jobPosting.png";
+import createJob from "../images/createJob.png";
+
 const imageLogin = { loginImage };
 
 const imageLandingPage = { ruby, javier, francisca, raul, contact };
 
 const imageNavbar = { gtjlogo, loginLogo, signupLogo };
 
-export { imageLogin, imageLandingPage, imageNavbar };
+const imageProfessionalInfo = { back, next, upload };
+
+const imageSideBar = {
+  gtjLogo,
+  searchicon,
+  following,
+  information,
+  profileIcon,
+  logout,
+};
+
+const imageRecruiterSideBar = {
+  gtjLogo,
+  jobPosting,
+  createJob,
+  profileIcon,
+  logout,
+};
+
+export {
+  imageLogin,
+  imageLandingPage,
+  imageNavbar,
+  imageProfessionalInfo,
+  imageSideBar,
+  imageRecruiterSideBar,
+};

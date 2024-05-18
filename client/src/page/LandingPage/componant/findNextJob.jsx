@@ -21,7 +21,7 @@ function FindNextJob() {
           </div>
           <div className="flex basis-1/2 bg-white items-center justify-center">
             <img
-              className="w-3/5 h-4/5"
+              className="w-fit h-fit object-cover"
               src={magnifyingGlass}
               alt="magnifying glass"
             />

@@ -2,6 +2,8 @@ import "../../App.css";
 import { useState, useEffect } from "react";
 import { imageLogin } from "../../data/image";
 import axios from "axios";
+import Navbar from "../../PublicComponant/NavBar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function LoginPage() {
   const [changeLoginForm, setChangeLoginForm] = useState(false);
@@ -9,6 +11,7 @@ function LoginPage() {
   const [validationEmail, setValidationEmail] = useState("");
   const [password, setPassword] = useState("");
   const [validationPassword, setValidationPassword] = useState("");
+  const { loginWithRedirect } = useAuth0();
 
   function validationForm() {
     setValidationEmail(email === "" ? "Please input your email" : "");
@@ -37,6 +40,7 @@ function LoginPage() {
 
   return (
     <>
+      <Navbar />
       <div className="w-screen h-screen bg-gray-100">
         <div className="flex justify-center gap-8 font-montserrat">
           <div className="flex flex-col gap-6 w-96">
@@ -96,7 +100,7 @@ function LoginPage() {
                 <span className="text-red-500">{validationPassword}</span>
               </label>
               <div className="flex justify-end">
-                <button className="btn btn-secondary rounded-2xl border-transparent w-24 bg-pink-300">
+                <button onClick={()=>loginWithRedirect} className="btn btn-secondary rounded-2xl border-transparent w-24 bg-pink-300">
                   Login
                 </button>
               </div>
